@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta | Sonoma Studio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header id="encabezado-principal">
+        <div class="contenedor-encabezado">
+            <a href="index.html"><img src="imagenes/EmpresaLogo.png" alt="Logo" id="logo-img"></a>
+            <h1 class="titulo-sitio">Sonoma Studio</h1>
+        </div>
+    </header>
+    <nav id="menu-principal">
+        <ul>
+            <li><a href="index.html">Estudio</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="encuesta.html" class="activo">Encuesta</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="#">🛒</a></li>
+        </ul>
+    </nav>
+    <main class="contenedor">
+        <h2>Encuesta de Percepción</h2>
+        <div class="formulario-caja" style="max-width: 600px;">
+            <form action="#">
+                <div class="input-grupo">
+                    <label>¿Qué te parece la temática ecológica de Ixora?</label>
+                    <select>
+                        <option>Muy Interesante</option>
+                        <option>Interesante</option>
+                        <option>Normal</option>
+                    </select>
+                </div>
+                <div class="input-grupo">
+                    <label>¿Cómo calificarías la dificultad de los niveles (1-10)?</label>
+                    <input type="number" min="1" max="10">
+                </div>
+                <div class="input-grupo">
+                    <label>¿Comprarías más juegos de Sonoma Studio?</label>
+                    <input type="radio" name="compra" value="si"> Sí
+                    <input type="radio" name="compra" value="no" style="margin-left: 20px;"> No
+                </div>
+                <button type="submit" class="boton-primario" style="width: 100%;">Enviar Encuesta</button>
+            </form>
+        </div>
+    </main>
+    <footer class="pie-pagina" style="text-align: center; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; padding-bottom: 20px;">
+        <div style="margin-bottom: 20px;">
+            <a href="LINK_RADIO" class="boton-primario" style="background-color: #ff4757; border-color: #ff4757;">🎙️ Escucha la Radio del CETI</a>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <h4 style="color: var(--beige-arena); margin-bottom: 10px;">Empresas Aliadas</h4>
+            <a href="LINK_COMPAÑERO_1" target="_blank"><img src="imagenes/logo_aliado1.png" alt="Empresa 1" style="height: 40px; margin: 0 10px; border-radius: 5px;"></a>
+            <a href="LINK_COMPAÑERO_2" target="_blank"><img src="imagenes/logo_aliado2.png" alt="Empresa 2" style="height: 40px; margin: 0 10px; border-radius: 5px;"></a>
+            <a href="LINK_COMPAÑERO_3" target="_blank"><img src="imagenes/logo_aliado3.png" alt="Empresa 3" style="height: 40px; margin: 0 10px; border-radius: 5px;"></a>
+        </div>
+
+        <div class="derechos">
+            <p>Pablo Edrei Rueda Martínez, 22300047, 8A1</p>
+            <p style="margin-top: 10px;">&copy; 2026 Sonoma Studio. Guadalajara, Jalisco.</p>
+        </div>
+    </footer>
+</body>
+</html>

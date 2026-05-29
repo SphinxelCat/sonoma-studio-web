@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo | Sonoma Studio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header id="encabezado-principal">
+        <div class="contenedor-encabezado">
+            <a href="index.html"><img src="imagenes/EmpresaLogo.png" alt="Logo" id="logo-img"></a>
+            <h1 class="titulo-sitio">Sonoma Studio</h1>
+        </div>
+    </header>
+    
+    <nav id="menu-principal">
+        <ul>
+            <li><a href="index.html">Estudio</a></li>
+            <li><a href="catalogo.html" class="activo">Catálogo</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="encuesta.html">Encuesta</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="#">🛒</a></li>
+        </ul>
+    </nav>
+    
+    <main class="contenedor">
+        <h2>Nuestros Títulos</h2>
+        <div class="promocion-highlight">
+            <h3 style="color: var(--beige-arena);">🔥 OFERTA DE LANZAMIENTO</h3>
+            <p>¡Consigue <strong>Ixora</strong> por solo <strong>$149 MXN</strong> y recibe el Soundtrack digital gratis!</p>
+            <a href="ixora.html" class="boton-primario" style="margin-top: 15px;">Ver Oferta</a>
+        </div>
+        
+        <div class="bloques-identidad" id="contenedor-juegos">
+            <p style="text-align: center; width: 100%;">Cargando catálogo desde la API...</p>
+        </div>
+    </main>
+
+    <footer class="pie-pagina" style="text-align: center; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; padding-bottom: 20px;">
+        <div style="margin-bottom: 20px;">
+            <a href="LINK_RADIO" class="boton-primario" style="background-color: #ff4757; border-color: #ff4757;">🎙️ Escucha la Radio del CETI</a>
+        </div>
+        <div style="margin-bottom: 20px;">
+            <h4 style="color: var(--beige-arena); margin-bottom: 10px;">Empresas Aliadas</h4>
+            <a href="LINK_COMPAÑERO_1" target="_blank"><img src="imagenes/logo_aliado1.png" alt="Empresa 1" style="height: 40px; margin: 0 10px; border-radius: 5px;"></a>
+            <a href="LINK_COMPAÑERO_2" target="_blank"><img src="imagenes/logo_aliado2.png" alt="Empresa 2" style="height: 40px; margin: 0 10px; border-radius: 5px;"></a>
+            <a href="LINK_COMPAÑERO_3" target="_blank"><img src="imagenes/logo_aliado3.png" alt="Empresa 3" style="height: 40px; margin: 0 10px; border-radius: 5px;"></a>
+        </div>
+        <div class="derechos">
+            <p>Pablo Edrei Rueda Martínez, 22300047, 8A1</p>
+            <p style="margin-top: 10px;">&copy; 2026 Sonoma Studio. Guadalajara, Jalisco.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ruta ajustada para Vercel
+            fetch('/api/juegos')
+                .then(respuesta => respuesta.json())
+                .then(datos => {
+                    const contenedor = document.getElementById('contenedor-juegos');
+                    contenedor.innerHTML = ''; 
+
+                    datos.forEach(juego => {
+                        const articulo = document.createElement('article');
+                        articulo.className = 'tarjeta-producto';
+                        articulo.innerHTML = `
+                            <img src="${juego.imagen}" alt="${juego.nombre}" style="width: 100%; height: 150px; object-fit: contain;">
+                            <h3>${juego.nombre}</h3>
+                            <p>${juego.descripcion}</p>
+                            <p style="font-weight: bold; margin: 10px 0;">$${juego.precio.toFixed(2)} MXN</p>
+                            <a href="ixora.html" class="boton-secundario">Detalles</a>
+                            <a href="#" class="boton-primario">Añadir al 🛒</a>
+                        `;
+                        contenedor.appendChild(articulo);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al cargar la API:', error);
+                    document.getElementById('contenedor-juegos').innerHTML = '<p style="text-align:center; width:100%;">Error al cargar el catálogo. Asegúrate de encender la API.</p>';
+                });
+        });
+    </script>
+</body>
+</html>

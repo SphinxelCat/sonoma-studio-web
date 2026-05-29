@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Sonoma Studio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header id="encabezado-principal">
+        <div class="contenedor-encabezado">
+            <a href="index.html"><img src="imagenes/EmpresaLogo.png" alt="Logo" id="logo-img"></a>
+            <h1 class="titulo-sitio">Sonoma Studio</h1>
+        </div>
+    </header>
+    <nav id="menu-principal">
+        <ul>
+            <li><a href="index.html">Estudio</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="login.html" class="activo">Login</a></li>
+        </ul>
+    </nav>
+    <main class="contenedor" style="display: flex; justify-content: center;">
+        <div class="formulario-caja" style="width: 100%; max-width: 400px;">
+            <h3>Iniciar Sesión</h3>
+            <form id="form-login">
+                <div class="input-grupo">
+                    <label>Usuario</label>
+                    <input type="text" id="usuario" placeholder="pablo" required>
+                </div>
+                <div class="input-grupo">
+                    <label>Contraseña</label>
+                    <input type="password" id="password" placeholder="ceti123" required>
+                </div>
+                <p id="mensaje-error" style="color: #ff4757; display: none; margin-bottom: 10px; text-align: center;">Credenciales incorrectas.</p>
+                <button type="submit" class="boton-primario" style="width: 100%;">Entrar</button>
+            </form>
+            <p style="margin-top: 15px; text-align: center;"><a href="logout.html" style="color: var(--azul-sereno);">Cerrar Sesión</a></p>
+        </div>
+    </main>
+
+    <footer class="pie-pagina" style="text-align: center; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; padding-bottom: 20px;">
+        <div style="margin-bottom: 20px;">
+            <a href="LINK_RADIO" class="boton-primario" style="background-color: #ff4757; border-color: #ff4757;">🎙️ Escucha la Radio del CETI</a>
+        </div>
+        <div style="margin-bottom: 20px;">
+            <h4 style="color: var(--beige-arena); margin-bottom: 10px;">Empresas Aliadas</h4>
+            <a href="LINK_COMPAÑERO_1" target="_blank"><img src="imagenes/logo_aliado1.png" alt="Empresa 1" style="height: 40px; margin: 0 10px; border-radius: 5px;"></a>
+            <a href="LINK_COMPAÑERO_2" target="_blank"><img src="imagenes/logo_aliado2.png" alt="Empresa 2" style="height: 40px; margin: 0 10px; border-radius: 5px;"></a>
+            <a href="LINK_COMPAÑERO_3" target="_blank"><img src="imagenes/logo_aliado3.png" alt="Empresa 3" style="height: 40px; margin: 0 10px; border-radius: 5px;"></a>
+        </div>
+        <div class="derechos">
+            <p>Pablo Edrei Rueda Martínez, 22300047, 8A1</p>
+            <p style="margin-top: 10px;">&copy; 2026 Sonoma Studio. Guadalajara, Jalisco.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('form-login').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            
+            const user = document.getElementById('usuario').value;
+            const pass = document.getElementById('password').value;
+
+            // Ruta ajustada para Vercel
+            fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ usuario: user, password: pass })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.status === "ok") {
+                    alert(data.mensaje);
+                    window.location.href = 'index.html'; 
+                } else {
+                    document.getElementById('mensaje-error').style.display = 'block';
+                }
+            })
+            .catch(err => console.error("Error conectando a la API", err));
+        });
+    </script>
+</body>
+</html>
